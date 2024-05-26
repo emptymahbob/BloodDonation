@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Donor List</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+#t {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+#t td, #t th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#t tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+#t tr:hover {
+    background-color: #ddd;
+}
+#t th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .nav-item .nav-link {
+            font-size: 1rem;
+            color: #007bff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-item .nav-link:hover {
+            color: #0056b3;
+        }
+
+        .navbar-toggler {
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar-toggler .navbar-toggler-icon {
+            width: 24px;
+            height: 2px;
+            background-color: #007bff;
+            display: block;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::before,
+        .navbar-toggler .navbar-toggler-icon::after {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background-color: #007bff;
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::after {
+            top: 8px;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">DIU Blood Donation</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+<!--                 <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/donors}">Donor List</a>
+                </li> -->
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/addDonor}">Add Donor</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <center><h2>Donor List</h2></center>
+        <table class="table mt-3" id="t">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Blood Group</th>
+                    <th>Online communication medium</th>
+                    <th>Last Donation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="donor : ${donors}">
+                    <td th:text="${donor.name}"></td>
+                    <td th:text="${donor.phone}"></td>
+                    <td th:text="${donor.bloodGroup}"></td>
+                    <td th:text="${donor.socialMedia}"></td>
+                    <td th:text="${donor.lastDonation}"></td>
+                    <td>
+                        <a th:href="@{/editDonor/{id}(id=${donor.id})}" class="btn btn-outline-success">Edit</a>
+                        <a th:href="@{/deleteDonor/{id}(id=${donor.id})}" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

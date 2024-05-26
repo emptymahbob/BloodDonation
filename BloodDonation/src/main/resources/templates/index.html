@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+body {
+    background-color: #f8f9fa;
+}
+.container {
+    text-align: center;
+}
+h1 {
+    color: #dc3545;
+}
+p {
+    font-size: 15px;
+}
+h5 {
+    font-size: 20px;
+}
+.card {
+    width: 350px;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.btn-lg {
+    padding: 10px 15px;
+    font-size: 25px;
+}
+.btn-animated {
+    transition: transform 0.3s ease-in-out;
+}
+.btn-animated:hover {
+    transform: scale(1.1);
+}
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .nav-item .nav-link {
+            font-size: 1rem;
+            color: #007bff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-item .nav-link:hover {
+            color: #0056b3;
+        }
+
+        .navbar-toggler {
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar-toggler .navbar-toggler-icon {
+            width: 24px;
+            height: 2px;
+            background-color: #007bff;
+            display: block;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::before,
+        .navbar-toggler .navbar-toggler-icon::after {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background-color: #007bff;
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::after {
+            top: 8px;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">DIU Blood Donation</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+<!--             <ul class="navbar-nav ml-auto">
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/donors}">Donor List</a>
+                </li>
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/addDonor}">Add Donor</a>
+                </li>
+            </ul> -->
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Welcome to DIU Blood Donation</h2>
+
+        <div class="container mt-5">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Blood Donor List</h5>
+                    <p class="card-text">See all the blood donors who want to donate their blood happily & freely.</p>
+                    <a th:href="@{/donors}" class="btn btn-primary btn-lg btn-block btn-animated">Show Donor List</a>
+                </div>
+            </div>
+
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Add yourself to the list of blood donors</h5>
+                    <p class="card-text">
+                        If you are willing to donate blood, click on the <code>Be a Donor</code>
+                        button and submit the form with your name, blood group, phone number, social media link (if any) and the last time you donated blood.
+                    </p>
+                    <a th:href="@{/addDonor}" class="btn btn-success btn-lg btn-block btn-animated">Be a Donor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

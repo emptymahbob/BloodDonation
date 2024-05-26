@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Donor</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+body {
+	background-color: #f8f9fa;
+}
+
+.container {
+	background-color: #ffffff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	padding: 20px;
+	margin-top: 50px;
+}
+
+h2 {
+	color: #007bff;
+}
+
+label {
+	color: #495057;
+}
+
+.form-control {
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+button {
+	background-color: #007bff;
+	color: #ffffff;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .nav-item .nav-link {
+            font-size: 1rem;
+            color: #007bff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-item .nav-link:hover {
+            color: #0056b3;
+        }
+
+        .navbar-toggler {
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar-toggler .navbar-toggler-icon {
+            width: 24px;
+            height: 2px;
+            background-color: #007bff;
+            display: block;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::before,
+        .navbar-toggler .navbar-toggler-icon::after {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background-color: #007bff;
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler .navbar-toggler-icon::after {
+            top: 8px;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">DIU Blood Donation</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/donors}">Donor List</a>
+                </li>
+                <li class="nav-item btn btn-outline-info ml-2">
+                    <a class="nav-link" th:href="@{/addDonor}">Add Donor</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+	<div class="container">
+		<h2 class="mb-4">Edit Donor</h2>
+
+		<form method="post" th:action="@{/editDonor/{id}(id=${donor.id})}"
+			th:object="${donor}">
+			<div class="form-group">
+				<label for="name">Name:</label> <input type="text"
+					class="form-control" id="name" th:field="*{name}" required>
+			</div>
+			<div class="form-group">
+				<label for="phone">Phone:</label> <input type="text"
+					class="form-control" id="phone" th:field="*{phone}" required>
+			</div>
+			<div class="form-group">
+				<label for="bloodGroup">Blood Group:</label> <select
+					class="form-control" id="bloodGroup" th:field="*{bloodGroup}"
+					required>
+					<option value="" disabled>Select Blood Group</option>
+					<option value="A+">A+</option>
+					<option value="A-">A-</option>
+					<option value="B+">B+</option>
+					<option value="B-">B-</option>
+					<option value="AB+">AB+</option>
+					<option value="AB-">AB-</option>
+					<option value="O+">O+</option>
+					<option value="O-">O-</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="socialMedia">Online communication medium:</label> <input
+					type="text" class="form-control" id="socialMedia"
+					th:field="*{socialMedia}" required>
+			</div>
+			<div class="form-group">
+				<label for="lastDonation">Last Donation:</label> <input
+					type="text" class="form-control" id="lastDonation"
+					th:field="*{lastDonation}" required>
+			</div>
+			<button type="submit" class="btn btn-primary btn-block">Update</button>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
